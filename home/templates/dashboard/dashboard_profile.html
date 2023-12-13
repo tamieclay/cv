@@ -1,0 +1,153 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}
+    User Dashboard
+{% endblock %}
+
+{% block content %}
+<style>
+    .form-container {
+        width: 600px;
+        padding: 16px;
+        background-color: teal;
+        margin: 0 auto;
+        margin-top: 100px;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
+    .form-container input[type=text], .form-container input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+    }
+    .form-container button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+    .form-container button:hover {
+        opacity: 1;
+    }
+</style>
+<div class="dashboard">
+    <header>
+      <h1>User Dashboard</h1>
+      {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}" class="login-btn">Logout</a>
+      {% else %}
+        <button class="login-btn" onclick="toggleLogin()">Login</button>
+      {% endif %}
+      <!-- Navigation or user profile section -->
+    </header>
+    <main>
+      
+      {% if user.is_authenticated %}
+        <section class="cvs" onclick="displayCVModal()">
+          <h2>CV Management</h2>
+          <!-- Display CVs table or list -->
+        </section>
+
+        <section class="users" onclick="toggleModal()">
+          <h2>Create  CV</h2>
+        </section>
+        
+        
+        <section class="analytics" onclick="displayAnalyticsModal()">
+         <h2>Analytics</h2>
+        </section>
+            <!-- Charts or analytics data -->
+          </div>
+        </section>
+
+        <div id="analyticsModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeAnalyticsModal()">×</span>
+            <h2>Analytics</h2>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+          </div>
+        </div>
+
+        <div id="cvModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeCVModal()">×</span>
+      
+            <h2>CV Management</h2>
+            <div class="cv-cards-container">
+              <!-- CV cards will be generated dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <div id="userModal" class="modal">
+          <div class="modal-content form-container">
+              <span class="close" onclick="toggleModal()">×</span>
+              <h2>Create your CV</h2>
+              <form method="post">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit">Create CV</button>
+              </form>
+          </div>
+      </div>
+      {% endif %}
+    
+      <div id="loginModal" class="modal login-modal" onclick="stopPropagation(event)">
+        <span class="close-icon" onclick="closeLogin()">X</span>
+        <h2>Login</h2>
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" required><br><br>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required><br><br>
+          <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+      function displayCVModal() {
+    var modal = document.getElementById("cvModal");
+    modal.style.display = "block";
+    generateCVCards();
+}
+
+function generateCVCards() {
+    var cvData = [
+      {% for cv in cvs %}
+        {
+          user: "{{ cv.user.username }}",
+          email: "{{ cv.user.email }}",
+          phone: "{{ cv.user.phone_number }}",
+          cvId: "{{ cv.id }}"
+        },
+      {% endfor %}
+    ];
+
+    var cvCardsContainer = document.querySelector(".cv-cards-container");
+    cvCardsContainer.innerHTML = ""; // Clear the container
+
+    cvData.forEach(function(cv) {
+      var card = document.createElement("div");
+      card.classList.add("cv-card");
+      card.innerHTML = `
+        <h3>${cv.user}</h3>
+        <p>Email: ${cv.email}</p>
+        <p>Phone: ${cv.phone}</p>
+        <button onclick="viewCV('${cv.cvId}')">View CV</button>
+        <button onclick="deleteCV('${cv.cvId}')">Delete</button>
+      `;
+      cvCardsContainer.appendChild(card);
+    });
+}
+
+    </script>
+    
+{% endblock %}

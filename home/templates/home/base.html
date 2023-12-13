@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Your common CSS and other head content -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user/css/main_user.css' %}">
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
+</head>
+<body>
+    <!-- Main content area -->
+    <div class="navigation">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Slider -->
+    {% include 'home/slider.html' %}
+
+    <!-- Your common footer -->
+    {% include 'partials/footer.html' %}
+    
+    <!-- Your JS file -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.swiper-container', {
+          slidesPerView: 1,
+          loop: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      });
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+  function displayAnalyticsModal() {
+    var modal = document.getElementById("analyticsModal");
+    modal.style.display = "block";
+    generateAnalyticsChart();
+  }
+
+  function closeAnalyticsModal() {
+    var modal = document.getElementById("analyticsModal");
+    modal.style.display = "none";
+  }
+
+  function generateAnalyticsChart() {
+    
+    var options = {
+      series: [{
+        name: 'Sales',
+        type: 'column',
+        data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+      }, {
+        name: 'Profit',
+        type: 'line',
+        data: [20, 35, 40, 60, 60, 75, 80, 90, 100]
+      }],
+      chart: {
+        height: 350,
+        type: 'line',
+      background: '#222',
+      },
+      stroke: {
+        width: [0, 4]
+      },
+      title: {
+        text: 'Sales & Profit'
+      },
+      dataLabels: {
+        enabled: true,
+        enabledOnSeries: [1]
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chartContainer"), options);
+    chart.render();
+  }
+</script>
+
+<script>
+  function toggleModal() {
+    var modal = document.getElementById("userModal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+  }
+
+  function displayCVModal() {
+    var modal = document.getElementById("cvModal");
+    modal.style.display = "block";
+    generateCVCards();
+  }
+
+  function generateCVCards() {
+    var cvData = [
+      {% for cv in cvs %}
+        {
+          user: "{{ cv.user.username }}",
+          email: "{{ cv.user.email }}",
+          phone: "{{ cv.user.phone_number }}",
+          cvId: "{{ cv.id }}"
+        },
+      {% endfor %}
+    ];
+
+    var cvCardsContainer = document.querySelector(".cv-cards-container");
+    cvCardsContainer.innerHTML = ""; // Clear the container
+
+    cvData.forEach(function(cv) {
+      var card = document.createElement("div");
+      card.classList.add("cv-card");
+      card.innerHTML = `
+        <h3>${cv.user}</h3>
+        <p>Email: ${cv.email}</p>
+        <p>Phone: ${cv.phone}</p>
+        <button onclick="viewCV('${cv.cvId}')">View CV</button>
+        <button onclick="deleteCV('${cv.cvId}')">Delete</button>
+      `;
+      cvCardsContainer.appendChild(card);
+    });
+  }
+
+  function deleteCV(cvId) {
+    // Implement CV deletion logic here
+  }
+
+  function viewCV(cvId) {
+    // Open a new tab/window to view the CV
+    window.open('/cv/' + cvId);
+  }
+
+  function closeCVModal() {
+    var modal = document.getElementById("cvModal");
+    modal.style.display = "none";
+  }
+</script>
+
+
+
+<script>
+  function toggleForm(formId) {
+    var form = document.getElementById(formId);
+    form.classList.toggle("hidden");
+  }
+</script>
+
+
+
+</body>
+</html>

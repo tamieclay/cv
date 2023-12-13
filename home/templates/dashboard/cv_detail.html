@@ -1,0 +1,97 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}
+        Curriculum Vitae of {{ user.username }}
+    </div>
+{% endblock %}
+
+{% block content %}
+<style>
+    @keyframes fadeIn {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
+    }
+
+    @keyframes hoverEffect {
+        0% {background-color: #ffffff; transform: scale(1);}
+        100% {background-color: #f8f9fa; transform: scale(1.05);}
+    }
+
+    body {
+        text-align: center;
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+    h3 {
+        color: #007BFF;
+        font-size: 1.5em;
+        margin-bottom: 0.5em;
+        animation: fadeIn 2s;
+    }
+    p, ul {
+        color: #6c757d;
+        font-size: 1.2em;
+        margin-bottom: 1em;
+        animation: fadeIn 2s;
+    }
+    hr {
+        border: 0;
+        height: 1px;
+        background: #6c757d;
+        margin-bottom: 1em;
+        animation: fadeIn 2s;
+    }
+    .section {
+        margin-bottom: 2em;
+        padding: 1em;
+        border-radius: 15px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 2s;
+        transition: all 0.3s;
+    }
+    .section:hover {
+        animation: hoverEffect 0.3s forwards;
+    }
+</style>
+
+<div class="section">
+    <h3>User Information</h3>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Address: {{ user.address }}</p>
+    <p>Phone Number: {{ user.phone_number }}</p>
+</div>
+
+<div class="section">
+    <h3>Work Experience</h3>
+    <p>{{ cv.work_experience }}</p>
+</div>
+
+<div class="section">
+    <h3>Education</h3>
+    <p>{{ cv.education }}</p>
+</div>
+
+<div class="section">
+    <h3>Skills</h3>
+    <p>{{ cv.skills }}</p>
+</div>
+
+<div class="section">
+    <h3>Achievements</h3>
+    <p>{{ cv.achievements }}</p>
+</div>
+
+<div class="section">
+    <h3>Certifications</h3>
+    <p>{{ cv.certifications }}</p>
+</div>
+
+<div class="section">
+    <h3>References</h3>
+    <p>{{ cv.references }}</p>
+</div>
+
+{% endblock %}

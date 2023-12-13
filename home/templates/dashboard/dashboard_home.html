@@ -1,0 +1,118 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}
+    Admin Dashboard
+{% endblock %}
+
+{% block content %}
+<style>
+    .form-container {
+        width: 600px;
+        padding: 16px;
+        background-color: teal;
+        margin: 0 auto;
+        margin-top: 100px;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
+    .form-container input[type=text], .form-container input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+    }
+    .form-container button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+    .form-container button:hover {
+        opacity: 1;
+    }
+</style>
+<div class="dashboard">
+    <header>
+      <h1>Admin Dashboard</h1>
+      {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}" class="login-btn">Logout</a>
+      {% else %}
+        <button class="login-btn" onclick="toggleLogin()">Login</button>
+      {% endif %}
+      <!-- Navigation or user profile section -->
+    </header>
+    <main>
+      
+      {% if user.is_authenticated %}
+        <section class="cvs" onclick="displayCVModal()">
+          <h2>CV Management</h2>
+          <!-- Display CVs table or list -->
+        </section>
+
+        <section class="users" onclick="toggleModal()">
+          <h2>Create  Account</h2>
+        </section>
+        
+        
+        <section class="analytics" onclick="displayAnalyticsModal()">
+         <h2>Analytics</h2>
+        </section>
+            <!-- Charts or analytics data -->
+          </div>
+        </section>
+
+        <div id="analyticsModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeAnalyticsModal()">×</span>
+            <h2>Analytics</h2>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+          </div>
+        </div>
+
+        <div id="cvModal" class="modal">
+          <div class="modal-content">
+              <span class="close" onclick="closeCVModal()">×</span>
+              <h2>CV Management</h2>
+              <div class="cv-cards-container">
+                  {% for cv in cvs %}
+                      <div class="cv-card">
+                          <h3>{{ cv.user.username }}</h3>
+                          <p><a href="{% url 'cv_detail' cv.id %}">View CV</a></p>
+                      </div>
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+      
+
+        <div id="userModal" class="modal">
+          <div class="modal-content form-container">
+              <span class="close" onclick="toggleModal()">×</span>
+              <form method="post" action="{% url 'signup' %}">
+                  {% csrf_token %}
+                  <h2>Enter User Information</h2>
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit">Submit</button>
+              </form>
+          </div>
+      </div>
+      {% endif %}
+    
+      
+      
+      
+    </div>
+    
+    
+      
+    </div>
+    
+    
+{% endblock %}

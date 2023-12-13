@@ -1,0 +1,49 @@
+<div id="userModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleModal()">&times;</span>
+        <form id="cvForm">
+            <h2>Update Your CV</h2>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="surname" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="workExperience">Work Experience</label>
+                <textarea id="workExperience" name="workExperience" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="education">Education</label>
+                <textarea id="education" name="education" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <input type="text" id="skills" name="skills" required>
+            </div>
+            <div class="form-group">
+                <label for="achievements">Achievements/Awards</label>
+                <textarea id="achievements" name="achievements" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="certifications">Certifications/Training</label>
+                <textarea id="certifications" name="certifications" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="references">References</label>
+                <textarea id="references" name="references" rows="4"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
