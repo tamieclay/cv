@@ -1,0 +1,460 @@
+/* Adjust the body background */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* Remove the background image from the body */
+  background-image: url('https://images.unsplash.com/photo-1543269664-56d93c1b41a6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+  .dashboard {
+    width: 80%;
+    margin: 20px auto;
+    background-color: transparent; /* Dashboard background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #f5f5f5;
+    padding: 20px;
+  }
+
+
+  header {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between; /* Align items with space in-between */
+    align-items: center; /* Align items vertically */
+    border-bottom: 1px solid #ccc;
+  }
+  
+  header h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+
+  
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  margin-top: 20px;
+}
+
+section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.users {
+  background-color: #ffcc00;
+  color: #333;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.users:hover {
+  transform: scale(1.05);
+}
+
+.users h2 {
+  color: #145374;
+  font-size: 28px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+.login-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Your existing CSS styles here */
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow: auto;
+}
+
+/* Style specifically for the login modal */
+.login-modal {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.login-modal h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: calc(100% - 12px);
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 20px;
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Add styles for the close icon */
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #999;
+}
+
+.close-icon:hover {
+  color: #333;
+}
+
+
+
+.analytics {
+    cursor: pointer;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .analytics:hover {
+    transform: scale(1.05);
+  }
+  
+  .analytics h2 {
+    color: #145374;
+    font-size: 28px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+
+.modal-content {
+  background-color: #f9f9f9;
+  margin: 10% auto;
+  padding: 30px;
+  border: none;
+  width: 50%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+ 
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cvs {
+  cursor: pointer;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.cvs:hover {
+  transform: scale(1.05);
+}
+
+.cvs h2 {
+  color: #145374;
+  font-size: 28px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+.cvs {
+  background-color: #f7e7cf; /* CVs section background color */
+  color: #333; /* Text color */
+  /* Other styles specific to CVs section */
+}
+
+.cvs h2 {
+  color: #6e531e; /* CVs section header color */
+}
+
+.analytics {
+  background-color: #d7f7cf; /* Analytics section background color */
+  color: #333; /* Text color */
+  /* Other styles specific to analytics section */
+}
+
+.analytics h2 {
+  color: #22752c; /* Analytics section header color */
+}
+
+  
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+  }
+  
+  * Add this CSS code to your existing style.css or create a new CSS file */
+  .image-slider {
+    width: 306%; /* Adjust this value to occupy a larger width */
+    margin: auto; /* Center the slider horizontally */
+  }
+
+  .dark-bg {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1543269664-56d93c1b41a6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Your image URL */
+    background-size: cover;
+  }
+  
+  .dark-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  }
+  
+/* Style for the image slider */
+/* Style for the image slider */
+.swiper-container {
+  width: 100%;
+  height: 300px; /* Adjust the height as needed */
+  overflow: hidden; /* Hide any overflow */
+  margin-bottom: 20px; /* Space below the slider */
+}
+
+.swiper-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire slide */
+  filter: brightness(50%); /* Darken the images (adjust the percentage as needed) */
+}
+
+.slide-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 1;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 35px;
+}
+
+/* Initial style for typing animation */
+.typing-animation {
+  overflow: hidden;
+  border-right: 0.15em solid orange; /* Cursor effect */
+  white-space: nowrap; /* Ensure text appears in a single line */
+  margin: 0;
+  padding: 0;
+  animation: typing 3s steps(40) forwards; /* Animation duration and steps */
+}
+
+/* Keyframes for typing animation */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+  
+/* Add this CSS to your existing stylesheet or link a new one */
+
+/* Updated CSS for the CV cards */
+
+/* Style for the CV cards container */
+.cv-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Style for each CV card */
+.cv-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.cv-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Style for card content */
+.cv-card-content {
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Style for CV card headings */
+.cv-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Style for CV card details */
+.cv-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Style for CV card buttons */
+.cv-card button {
+  padding: 8px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cv-card button:hover {
+  background-color: #0056b3;
+}
+
+/* Style specifically for the login modal */
+.login-modal {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.login-modal h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-align: center;
+}
