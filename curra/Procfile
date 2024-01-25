@@ -1,1 +1,2 @@
-web: gunicorn curra.wsgi
+web: gunicorn curra.curra.wsgi
+
