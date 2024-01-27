@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c415-*(*te@=*%h)!jx+hznf**fekq^7ysih!=a8c&#p^67a=n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://ervsmartcard.com/','www.ervsmartcard.com','ervsmartcard.com']
+ALLOWED_HOSTS = ['127.0.0.1','ervsmartcard.com', 'www.ervsmartcard.com']
 
 
 # Application definition
@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'curra.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+} """
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'xziysyrx_cv',
+        'USER': 'xziysyrx_moyo',
+        'PASSWORD': 'fFnHC?N9E-$_',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
