@@ -51,12 +51,12 @@
       
       {% if user.is_authenticated %}
         <section class="cvs" onclick="displayCVModal()">
-          <h2>CV Management</h2>
+          <h2>Profile Management</h2>
           <!-- Display CVs table or list -->
         </section>
 
         <section class="users" onclick="toggleModal()">
-          <h2>Create  CV</h2>
+          <h2>Create  Profile</h2>
         </section>
         
         
@@ -79,7 +79,7 @@
           <div class="modal-content">
             <span class="close" onclick="closeCVModal()">×</span>
       
-            <h2>CV Management</h2>
+            <h2>Profile Management</h2>
             <div class="cv-cards-container">
               <!-- CV cards will be generated dynamically -->
             </div>
@@ -89,11 +89,11 @@
         <div id="userModal" class="modal">
           <div class="modal-content form-container">
               <span class="close" onclick="toggleModal()">×</span>
-              <h2>Create your CV</h2>
+              <h2>Create your Profile</h2>
               <form method="post">
                   {% csrf_token %}
                   {{ form.as_p }}
-                  <button type="submit">Create CV</button>
+                  <button type="submit">Create Profile</button>
               </form>
           </div>
       </div>

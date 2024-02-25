@@ -2,96 +2,131 @@
 {% load static %}
 
 {% block title %}
-        Curriculum Vitae of {{ user.username }}
-    </div>
+        Profile of {{ user.username }}
+    
 {% endblock %}
 
 {% block content %}
 <style>
-    @keyframes fadeIn {
-        0% {opacity: 0;}
-        100% {opacity: 1;}
-    }
-
-    @keyframes hoverEffect {
-        0% {background-color: #ffffff; transform: scale(1);}
-        100% {background-color: #f8f9fa; transform: scale(1.05);}
-    }
-
     body {
         text-align: center;
         background-color: #f8f9fa;
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #495057;
+        line-height: 1.6;
     }
+
     h3 {
         color: #007BFF;
-        font-size: 1.5em;
+        font-size: 2em;
+        margin-bottom: 1em;
+        animation: fadeIn 2s;
+    }
+
+    p {
+        font-size: 1.2em;
         margin-bottom: 0.5em;
         animation: fadeIn 2s;
     }
-    p, ul {
-        color: #6c757d;
-        font-size: 1.2em;
-        margin-bottom: 1em;
-        animation: fadeIn 2s;
-    }
-    hr {
-        border: 0;
-        height: 1px;
-        background: #6c757d;
-        margin-bottom: 1em;
-        animation: fadeIn 2s;
-    }
+
     .section {
         margin-bottom: 2em;
-        padding: 1em;
+        padding: 1.5em;
         border-radius: 15px;
         background-color: #ffffff;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
         animation: fadeIn 2s;
-        transition: all 0.3s;
+        transition: transform 0.3s, box-shadow 0.3s;
     }
+
     .section:hover {
-        animation: hoverEffect 0.3s forwards;
+        transform: scale(1.05);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .social-icon {
+        font-size: 1.8em;
+        margin-right: 0.5em;
+    }
+
+    .no-link {
+        color: #868e96;
+        font-style: italic;
+    }
+
+    .social-section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .social-links {
+        display: flex;
+        align-items: center;
+    }
+
+    .social-links a {
+        margin-right: 1em;
+        text-decoration: none;
+        color: #007BFF;
+        transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+        color: #0056b3;
+    }
+
+    .no-link {
+        color: #868e96;
+        font-style: italic;
+        margin-top: 1em;
     }
 </style>
 
-<div class="section">
-    <h3>User Information</h3>
-    <p>Username: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Address: {{ user.address }}</p>
-    <p>Phone Number: {{ user.phone_number }}</p>
+<div class="section" style="background-color: #f2f2f2; padding: 20px; border-radius: 10px; font-family: 'Merriweather', serif;">
+    <h3 style="color: #04AA6D;">My Information</h3>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Address:</strong> {{ user.address }}</p>
+    <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+    <button id="save-btn" style="background-color: #04AA6D; color: white; padding: 10px; border: none; cursor: pointer; border-radius: 5px;">Add to Contacts</button>
+    <div style="margin-top: 20px;">
+        <a href="{{ cv.facebook }}" target="_blank" style="margin-right: 10px;"><i class="fab fa-facebook" style="font-size:34px; color: #3b5998;"></i></a>
+        <a href="{{ cv.twitter }}" target="_blank" style="margin-right: 10px;"><i class="fab fa-twitter" style="font-size:34px; color: #00acee;"></i></a>
+        <a href="{{ cv.linkedin }}" target="_blank"><i class="fab fa-linkedin" style="font-size:34px; color: #0e76a8;"></i></a>
+    </div>
 </div>
 
-<div class="section">
+<div class="section" style="font-family: 'Merriweather', serif;">
     <h3>Work Experience</h3>
     <p>{{ cv.work_experience }}</p>
 </div>
 
-<div class="section">
+<div class="section" style="font-family: 'Merriweather', serif;">
     <h3>Education</h3>
     <p>{{ cv.education }}</p>
 </div>
 
-<div class="section">
+<div class="section" style="font-family: 'Merriweather', serif;">
     <h3>Skills</h3>
     <p>{{ cv.skills }}</p>
 </div>
 
-<div class="section">
+<div class="section" style="font-family: 'Merriweather', serif;">
     <h3>Achievements</h3>
     <p>{{ cv.achievements }}</p>
 </div>
 
-<div class="section">
+<div class="section" style="font-family: 'Merriweather', serif;">
     <h3>Certifications</h3>
     <p>{{ cv.certifications }}</p>
 </div>
 
-<div class="section">
+<div class="section" style="font-family: 'Merriweather', serif;">
     <h3>References</h3>
     <p>{{ cv.references }}</p>
 </div>
+
+
 
 {% endblock %}

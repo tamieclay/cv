@@ -49,6 +49,9 @@ class CV(models.Model):
     achievements = models.TextField(blank=True, null=True)
     certifications = models.TextField(blank=True, null=True)
     references = models.TextField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
 
     class Meta:
         verbose_name = 'CV'
@@ -56,3 +59,18 @@ class CV(models.Model):
 
     def __str__(self):
         return f"CV of {self.skills} {self.references}"
+
+
+class PageView(models.Model):
+    page = models.CharField(max_length=200)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    ip_address = models.GenericIPAddressField()
+    location = models.CharField(max_length=200) 
+
+    class Meta:
+        verbose_name = 'page'
+        verbose_name_plural = 'user data'
+
+    def __str__(self):
+        return f"data of {self.user} {self.location}"       

@@ -41,7 +41,9 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.views import View
 from .forms import LoginForm, CustomUserForm
-from .models import CV
+from django.views.generic import DetailView
+from .models import CV, PageView
+from ip2geotools.databases.noncommercial import DbIpCity
 
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
@@ -136,6 +138,8 @@ class CVCreateView(CreateView):
         return reverse('cv_detail', kwargs={'pk': self.object.pk})
 
 
+
+
 class CVDetailView(DetailView):
     model = CV
     template_name = 'dashboard/cv_detail.html'
@@ -144,4 +148,20 @@ class CVDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['cv'] = self.object
         return context
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+
+        ip = request.META.get('REMOTE_ADDR')
+        location = DbIpCity.get(ip, api_key='free')
+
+        PageView.objects.create(
+            page=request.path,
+            user=request.user if request.user.is_authenticated else None,
+            ip_address=ip,
+            location=f'{location.city}, {location.region}, {location.country}'
+        )
+
+        return response
+
 

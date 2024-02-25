@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'user/css/main_user.css' %}">
     
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+
     
 </head>
 <body>
@@ -21,6 +24,40 @@
 
     <!-- Your common footer -->
     {% include 'partials/footer.html' %}
+
+    <script>
+      // Get the button element by id
+      var saveBtn = document.getElementById("save-btn");
+      // Add a click event listener to the button
+      saveBtn.addEventListener("click", function () {
+          // Get the contact information from the website
+          var contact = {
+              name: "{{ user.username }}",
+              email: "{{ user.email }}",
+              address: "{{ user.address }}",
+              phone: "{{ user.phone_number }}"
+          };
+          // Create a vCard file using the contact information
+          var vcard = "BEGIN:VCARD\nVERSION:4.0\nFN:" + contact.name + "\nEMAIL:" + contact.email + "\nADR:" + contact.address + "\nTEL;TYPE=work,voice:" + contact.phone + "\nEND:VCARD";
+          // Create a blob object from the vCard string
+          var blob = new Blob([vcard], { type: "text/vcard" });
+          // Create a URL object from the blob object
+          var url = URL.createObjectURL(blob);
+          // Create a temporary link element
+          var link = document.createElement("a");
+          // Set the link attributes
+          link.href = url;
+          link.download = contact.name + ".vcf";
+          // Append the link to the document body
+          document.body.appendChild(link);
+          // Click the link programmatically
+          link.click();
+          // Remove the link from the document body
+          document.body.removeChild(link);
+          // Display a message to the user
+          alert("Contact information saved to phone.");
+      });
+  </script>
     
     <!-- Your JS file -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

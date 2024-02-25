@@ -1,43 +1,86 @@
-{% extends 'home/base.html' %}
 {% load static %}
 
 {% block title %}
-    Login Page
+    Secure Login
 {% endblock %}
 
 {% block content %}
     <style>
+        body {
+            text-align: center;
+            background-color: #2C3E50; /* Darker background color */
+            background-image: url('{% static "images/test.jpg" %}');
+            background-size: cover;
+            background-blend-mode: overlay;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff; /* Light text color on dark background */
+        }
+
         .form-container {
-            width: 800px;
-            padding: 16px;
-            background-color: transparent;
-            margin: 0 auto;
-            margin-top: 100px;
-            border: 1px solid black;
-            border-radius: 4px;
+            width: 400px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            margin: 50px auto;
+            border: 1px solid #dcdcdc;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s;
         }
-        .form-container input[type=text], .form-container input[type=password] {
+
+        .form-container:hover {
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .form-container input[type=email],
+        .form-container input[type=password] {
             width: 100%;
-            padding: 15px;
-            margin: 5px 0 22px 0;
-            border: none;
-            background: #f1f1f1;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.3s;
         }
+
+        .form-container input[type=email]:focus,
+        .form-container input[type=password]:focus {
+            border-color: #007BFF;
+        }
+
         .form-container button {
             background-color: #4CAF50;
             color: white;
-            padding: 16px 20px;
+            padding: 14px 20px;
             border: none;
             cursor: pointer;
             width: 100%;
-            opacity: 0.9;
+            border-radius: 6px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
         }
+
         .form-container button:hover {
-            opacity: 1;
+            background-color: #45a049;
+        }
+
+        .security-icon {
+            color: #007BFF;
+            font-size: 2em;
+            margin-bottom: 10px;
         }
     </style>
+
     <form method="post" class="form-container">
         {% csrf_token %}
+        <div class="security-icon">&#128274;</div>
+        <h2>Secure Login</h2>
         {{ form.as_p }}
         <button type="submit">Login</button>
     </form>

@@ -51,7 +51,7 @@
       
       {% if user.is_authenticated %}
         <section class="cvs" onclick="displayCVModal()">
-          <h2>CV Management</h2>
+          <h2>My Profile</h2>
           <!-- Display CVs table or list -->
         </section>
 
@@ -78,7 +78,7 @@
         <div id="cvModal" class="modal">
           <div class="modal-content">
               <span class="close" onclick="closeCVModal()">×</span>
-              <h2>CV Management</h2>
+              <h2>My Profile</h2>
               <div class="cv-cards-container">
                   {% for cv in cvs %}
                       <div class="cv-card">

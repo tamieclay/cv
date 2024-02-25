@@ -8,7 +8,7 @@ from home.models import CustomUser, CV
 class CVCreationForm(forms.ModelForm):
     class Meta:
         model = CV
-        fields = ['work_experience', 'education', 'skills', 'achievements', 'certifications', 'references']
+        fields = ['work_experience', 'education', 'skills', 'achievements', 'certifications', 'references','linkedin', 'twitter','facebook']
         widgets = {
             'work_experience': forms.Textarea(attrs={'cols': 80, 'rows': 5}),
             'education': forms.Textarea(attrs={'cols': 80, 'rows': 5}),
@@ -16,6 +16,9 @@ class CVCreationForm(forms.ModelForm):
             'achievements': forms.Textarea(attrs={'cols': 40, 'rows': 3}),
             'certifications': forms.Textarea(attrs={'cols': 40, 'rows': 3}),
             'references': forms.Textarea(attrs={'cols': 40, 'rows': 3}),
+           'linkedin': forms.URLInput(attrs={'size': 40}),
+            'twitter': forms.URLInput(attrs={'size': 40}),
+            'facebook': forms.URLInput(attrs={'size': 40}),
         }
 
     # Clean data and convert non-bytes to bytes if necessary
